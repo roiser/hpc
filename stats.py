@@ -62,7 +62,7 @@ class stats() :
                 print(entry.format(val=k, mean=mean, stdev=stdev, minv=minv, maxv=maxv, series=str(times)))
             else:
                 print(entry.format(val=k, mean=mean, stdev=stdev))
-            statsdict[k] = {'mean': str(mean), 'stdev': str(stdev), 'max': str(maxv), 'min': str(minv)}
+            statsdict[k] = {'mean': str(mean), 'stdev': str(stdev), 'max': str(maxv), 'min': str(minv), 'times': [str(x) for x in times]}
         print()
 
         data = {'conf': {'proc': process, 'runopts': runopts, 'numevts': numevts},
