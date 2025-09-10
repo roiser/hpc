@@ -8,6 +8,8 @@ import argparse
 class stats() :
 
     def __init__(self, full):
+        self.runname = os.path.basename(os.path.abspath(os.curdir))
+        print(self.runname)
         self.full = full
         self.delimiter = ">>>>> "
         self.confdict = {}
@@ -67,7 +69,7 @@ class stats() :
 
         data = {'conf': {'proc': process, 'runopts': runopts, 'numevts': numevts},
                 'stat': statsdict}
-        fh = open('stats.json','w')
+        fh = open('stats_%s.json' % self.runname, 'w')
         fh.write(json.dumps(data, indent=2))
         fh.close()
 
