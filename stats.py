@@ -45,6 +45,7 @@ class stats() :
         process = self.confdict['PROC_DIR']
         runopts = self.confdict['RUN_OPTS']
         numevts = self.confdict['NUM_EVTS']
+        numgpus = self.confdict['NUM_GPUS']
         if self.full:
             header = "\n%s, run.sh %s %s <seed>\n\nTIME   DURATION(s)   STD DEV       MIN       MAX   SERIES\n%s" % (process, runopts, numevts, '-'*57)
             entry = "{val}\t{mean:10.2f}{stdev:10.2f}{minv:10.2f}{maxv:10.2f}   {series}"   
@@ -67,7 +68,7 @@ class stats() :
             statsdict[k] = {'mean': str(mean), 'stdev': str(stdev), 'max': str(maxv), 'min': str(minv), 'times': [str(x) for x in times]}
         print()
 
-        data = {'conf': {'proc': process, 'runopts': runopts, 'numevts': numevts},
+        data = {'conf': {'proc': process, 'runopts': runopts, 'numevts': numevts, 'numgpus': numgpus},
                 'stat': statsdict}
         fh = open('stats_%s.json' % self.runname, 'w')
         fh.write(json.dumps(data, indent=2))
