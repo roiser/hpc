@@ -7,7 +7,9 @@ MG5_PROC_TAG=$4
 MG5_NUM_GPUS=1
 
 MG5_ENV=hpc/conf/${MG5_HPC}.sh
-if [[ -e ${MG5_ENV} ]]; then source ${MG5_ENV}; fi
+if [[ -e ${MG5_ENV} ]]; then source ${MG5_ENV}
+else echo "ERROR cannot find enf script hpc/conf/${MG5_HPC}.sh" && exit 1
+fi
 
 for eva in "${MG5_EVAL_LIST}"; do eval ${eva}; done
 for mod in "${MG5_MODULES}"; do module load ${mod}; done
